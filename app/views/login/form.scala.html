@@ -1,0 +1,51 @@
+@(form: Form[(String, String)])
+
+
+@main("CMS - inloggen"){
+<div style="clear:both;"></div>	
+<div class="container">
+	<div class="content">
+		<div class="page-header">
+			<h1>Inloggen</h1>
+		</div>	
+		<div class="row">
+			<div class="span10">
+				@helper.form(routes.Application.authenticate){
+					<fieldset>
+						<legend>Inloggen</legend>
+						
+						@form.forField("email"){field =>
+							<div class="clearfix">
+								<label for="@field.name">Email</label>
+								<div class="input">
+									<input id="@field.name" class="x-large" placeholder="Email" type="text" name="@field.name" value="@field.value" />
+										@field.error.map{ error =>
+											<span class="help-inline">@error</span>
+										}
+								</div>
+							</div>
+						}
+						
+						@form.forField("password"){ field =>
+							<div class="clearfix">
+								<label for="@field.name">Wachtwoord</label>
+								<div class="input">
+									<input id="@field.name" class="x-large" placeholder="Wachtwoord" type="password" name="@field.name" value="@field.value" />
+									@field.error.map{ error =>
+										<span class="help-inline">@error</span>
+									}
+								</div>
+							</div>
+						}
+						
+						<div class="actions">
+							<input type="submit" value="Inloggen" class="btn primary" />
+						</div>
+						
+					</fieldset>
+				}
+			</div>
+		</div>
+	</div>	
+</div>
+}
